@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
+    <title>{% block title %}Index{% endblock %}</title>
 </head>
 <body>
-    <h1>Ma page d'index !!!</h1>
+    <nav>
+        <ul>
+            <li><a href="/">Index</a></li>
+            <li><a href="/demo/jinja">Démonstrations Jinja</a></li>
+        </ul>
+    </nav>
+    {% block content%}<h1>Bienvenue sur la page d'index !<h1>{% endblock%}
 </body>
 </html>
