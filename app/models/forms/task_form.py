@@ -4,4 +4,4 @@ from wtforms.validators import DataRequired, Length
 
 class TaskForm(FlaskForm):
     nom = StringField('Nom', validators=[DataRequired()])
-    description = StringField('Description',validators=[DataRequired(), Length(max=200)])
+    description = StringField('Description',validators=[DataRequired(), Length(min=200)])
