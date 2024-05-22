@@ -1,0 +1,11 @@
+# Mini-framework
+Flask==3.0.3
+
+# formulaire
+Flask_wtf==1.2.1
+email_validator==2.1.1
+
+# ORM pour la db
+sqlalchemy==2.0.30
+flask_sqlalchemy==3.1.1
+psycopg2==2.9.9 # Pour se connecter avec postgre

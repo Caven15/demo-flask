@@ -15,7 +15,7 @@
         </ul>
     {% endif %}
     <label for="nom">{{form.nom.label}}</label>
-    <input type="text" id="nom" name="nom">
+    <input type="text" id="nom" name="nom" value="{{form.nom.data}}">
 
     <br>
 
@@ -27,7 +27,7 @@
     </ul>
     {% endif %}
     <label for="description">{{form.description.label}}</label>
-    <input type="text" id="description" name="description">
+    <input type="text" id="description" name="description" value="{{form.description.data}}">
 
     <button type="submit" >Valider</button>
 </form>
