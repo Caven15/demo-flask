@@ -9,3 +9,6 @@ email_validator==2.1.1
 sqlalchemy==2.0.30
 flask_sqlalchemy==3.1.1
 psycopg2==2.9.9 # Pour se connecter avec postgre
+
+# authentificaiton
+Flask-Login==0.6.3

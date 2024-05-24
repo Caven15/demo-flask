@@ -1,7 +1,8 @@
 from flask import Flask
+from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
-from app.models.db.db_model import Base
+from app.models.db.db_model import Base, User
 from config import SECRET_KEY, URL_DB
 from flask_wtf.csrf import CSRFProtect
 from sqlalchemy.exc import SQLAlchemyError
@@ -9,11 +10,15 @@ from sqlalchemy.exc import SQLAlchemyError
 # Inititalisation de l'application Flask
 app = Flask(__name__)
 
-
 # mise en place du jeton d'accès (formulaire)
 app.config['SECRET_KEY'] = SECRET_KEY
 app.config['SQLALCHEMY_DATABASE_URI'] = URL_DB
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# Configuration de flask-login
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "login"
 
 # Inititialisation de CSRFProtect pour la protection contre les attaques CSRF
 csrf = CSRFProtect(app)
@@ -44,7 +49,7 @@ if db_connected:
     # metadata.create_all(bind=engine)
     
     # Ajouter l'import des routes
-    from app.routes import other, task, user
+    from app.routes import other, task, user, auth
     
     print("----------------------")
     print("Connexion db établie !")
