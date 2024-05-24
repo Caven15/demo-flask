@@ -23,3 +23,29 @@ def register():
             session.add(new_user)
         return redirect(url_for('getUsers'))
     return render_template('user/create.html', form=form)
+
+# Update
+@app.route('/user/update/<int:id>', methods=['GET', 'POST'])
+def updateUser(id):
+    form = UserForm()
+    
+    with session_scope() as session:
+        user = session.query(User).filter_by(id=id).first()
+    
+    if form.validate_on_submit():
+        # Logique de mise à jour
+        with session_scope() as session:
+            user = session.query(User).filter_by(id=id).first()
+            user.username = form.username.data
+            user.email = form.email.data
+        return redirect(url_for('updateUser',id=id))
+        
+    return render_template('user/update.html', form = form, user = user)
+
+# Delete
+@app.route('/user/delete/<int:id>', methods=['POST'])
+def deleteUser(id):
+    with session_scope() as session:
+        user = session.query(User).filter_by(id=id).first()
+        session.delete(user)
+    return redirect(url_for('getUsers'))
